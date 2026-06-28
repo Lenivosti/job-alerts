@@ -3,186 +3,341 @@
     "name": "Synthflow",
     "type": "ashby",
     "slug": "synthflow",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "program manager", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "WeTravel",
     "type": "ashby",
     "slug": "wetravel",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "program manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Mapbox",
     "type": "ashby",
     "slug": "mapbox",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "program manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "JetBrains",
     "type": "greenhouse",
     "slug": "jetbrains",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "program manager", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "RemoFirst",
     "type": "lever",
     "slug": "remofirst",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "program manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Praktika",
     "type": "teamtailor",
     "slug": "praktika",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Insense",
     "type": "teamtailor",
     "slug": "insense.na",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Voyagu",
     "type": "breezy",
     "slug": "voyagu",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Affise",
     "type": "html",
     "url": "https://affise.com/careers/",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Wrike",
     "type": "html",
     "url": "https://www.wrike.com/jobs/",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Fyul",
     "type": "html",
     "url": "https://careers.fyul.com/jobs",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Elly Analytics",
     "type": "html",
     "url": "https://ellyanalytics.notion.site/HIRING-at-Elly-Analytics-48cab7bfbcaf43be80749e3f95425ad2",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Joom",
     "type": "html",
     "url": "https://about.joom.com/en/vacancies",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "ClickHouse",
     "type": "html",
     "url": "https://clickhouse.com/company/careers",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Adapty",
     "type": "html",
     "url": "https://careers.adapty.io/",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Remote.com",
     "type": "html",
     "url": "https://remote.com/careers",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Qonto",
     "type": "html",
     "url": "https://qonto.com/en/careers",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "FlexDatabases",
     "type": "html",
     "url": "https://flexdatabases.com/open-positions/",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Apron",
     "type": "html",
     "url": "https://getapron.com/careers#open-roles",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Miro",
     "type": "html",
     "url": "https://miro.com/careers/open-positions/",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Preply",
     "type": "html",
     "url": "https://preply.com/en/careers",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Akvelon",
     "type": "html",
     "url": "https://akvelon.com/careers/#search-box",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Onde",
     "type": "html",
     "url": "https://onde.app/careers",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Zimad",
     "type": "html",
     "url": "https://zimad.com/vacancies",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Readymag",
     "type": "html",
     "url": "https://readymag.com/readymag/careers/",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "First Agency",
     "type": "html",
     "url": "https://firstagency.com/careers/",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Kodland",
     "type": "html",
     "url": "https://kodlandcareer.notion.site/Jobs-at-Kodland-32dbf4cd9577449bab2a6945f89c47ba",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Aiby",
     "type": "html",
     "url": "https://aiby.com/careers/jobs/",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Sumsub",
     "type": "html",
     "url": "https://careers.sumsub.com/jobs",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Nebius",
     "type": "html",
     "url": "https://careers.nebius.com/",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations", "office manager"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   },
   {
     "name": "Wise Wolves",
     "type": "html",
     "url": "https://wise-wolves.com/career-corporate-culture/",
-    "keywords": ["travel", "coordinator", "event", "project manager", "operations"]
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   }
 ]
