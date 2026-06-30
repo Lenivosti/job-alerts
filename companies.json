@@ -405,5 +405,115 @@
       "event",
       "project manager"
     ]
+  },
+  {
+    "name": "ElevenLabs",
+    "type": "html",
+    "url": "https://elevenlabs.io/careers",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "SOFTSWISS",
+    "type": "html",
+    "url": "https://careers.softswiss.com/vacancies/",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "BrainRocket",
+    "type": "html",
+    "url": "https://www.brainrocket.com/career",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Kodland Tech",
+    "type": "html",
+    "url": "https://kodland.tech/career",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Exoticca",
+    "type": "workable",
+    "slug": "exoticca",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "CMA",
+    "type": "html",
+    "url": "https://www.cma.se/careers",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Toloka",
+    "type": "html",
+    "url": "https://toloka.ai/careers",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Creatio",
+    "type": "html",
+    "url": "https://www.creatio.com/company/careers/job-openings",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Fundraise Up",
+    "type": "html",
+    "url": "https://fundraiseup.com/careers/",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Exo Group",
+    "type": "html",
+    "url": "https://www.exogroup.com/careers",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   }
 ]

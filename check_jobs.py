@@ -123,6 +123,20 @@ def fetch_breezy(slug):
     return jobs
 
 
+def fetch_workable(slug):
+    url = f"https://apply.workable.com/api/v1/widget/accounts/{slug}"
+    resp = requests.get(url, headers=HEADERS, timeout=20)
+    resp.raise_for_status()
+    data = resp.json()
+    jobs = []
+    for job in data.get("jobs", []):
+        title = job.get("title", "")
+        shortcode = job.get("shortcode", "")
+        link = f"https://apply.workable.com/{slug}/j/{shortcode}" if shortcode else f"https://apply.workable.com/{slug}/"
+        jobs.append((title, link))
+    return jobs
+
+
 def fetch_html(url):
     resp = requests.get(url, headers=HEADERS, timeout=20)
     resp.raise_for_status()
@@ -143,6 +157,7 @@ FETCHERS = {
     "lever": lambda c: fetch_lever(c["slug"]),
     "teamtailor": lambda c: fetch_teamtailor(c["slug"]),
     "breezy": lambda c: fetch_breezy(c["slug"]),
+    "workable": lambda c: fetch_workable(c["slug"]),
     "html": lambda c: fetch_html(c["url"]),
 }
 
