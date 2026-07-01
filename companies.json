@@ -515,5 +515,104 @@
       "event",
       "project manager"
     ]
+  },
+  {
+    "name": "GitLab",
+    "type": "greenhouse",
+    "slug": "gitlab",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Social Discovery Group",
+    "type": "html",
+    "url": "https://socialdiscoverygroup.com/vacancies",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Lovable",
+    "type": "html",
+    "url": "https://lovable.dev/careers",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Dado",
+    "type": "html",
+    "url": "https://www.dadohr.com/careers",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Meilisearch",
+    "type": "html",
+    "url": "https://www.meilisearch.com/careers",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Finseo",
+    "type": "html",
+    "url": "https://www.finseo.ai/careers",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Helply",
+    "type": "html",
+    "url": "https://helply.com/careers",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Unikflow",
+    "type": "html",
+    "url": "https://unikflow.com/careers",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
+  },
+  {
+    "name": "Whisperly",
+    "type": "html",
+    "url": "https://whisperly.ai/careers",
+    "keywords": [
+      "travel",
+      "coordinator",
+      "event",
+      "project manager"
+    ]
   }
 ]
