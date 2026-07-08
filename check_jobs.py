@@ -48,6 +48,36 @@ def matches_keywords(text, keywords):
     return any(kw.lower() in text_lower for kw in keywords)
 
 
+# Признаки того, что ссылка ведёт на КОНКРЕТНУЮ вакансию, а не на раздел сайта.
+# Хотя бы один из этих фрагментов должен быть в URL html-ссылки.
+JOB_URL_HINTS = ["/job", "/jobs/", "/vacanc", "/position", "/opening", "/careers/", "/career/", "/apply", "/p/", "-vacancy", "gh_jid", "lever.co", "ashbyhq", "workable", "teamtailor", "breezy", "/o/"]
+
+# Тексты-ссылки, которые почти всегда являются пунктами меню/навигации, а не вакансиями.
+NAV_TEXT_BLOCKLIST = {
+    "events", "event", "travel", "mobility", "mobility & relocation",
+    "careers", "career", "about", "about us", "blog", "news", "company",
+    "team", "our team", "culture", "life", "benefits", "perks", "press",
+    "contact", "home", "jobs", "open roles", "all jobs", "vacancies",
+}
+
+
+def looks_like_job_link(text, url):
+    """Для html-источников: True, только если ссылка похожа на конкретную вакансию,
+    а её текст не выглядит как навигационный пункт меню."""
+    text_norm = text.strip().lower()
+    # Отсекаем короткие навигационные подписи ("Events", "Travel" и т.п.)
+    if text_norm in NAV_TEXT_BLOCKLIST:
+        return False
+    # Отсекаем маркетинговые страницы-сравнения ("Onde vs. Atom Mobility")
+    if " vs. " in text_norm or " vs " in text_norm or text_norm.startswith("vs.") or text_norm.startswith("vs "):
+        return False
+    url_lower = url.lower()
+    has_job_hint = any(h in url_lower for h in JOB_URL_HINTS)
+    if not has_job_hint:
+        return False
+    return True
+
+
 def make_id(*parts):
     raw = "|".join(parts)
     return hashlib.md5(raw.encode("utf-8")).hexdigest()
@@ -138,7 +168,12 @@ def fetch_workable(slug):
 
 
 def fetch_html(url):
-    resp = requests.get(url, headers=HEADERS, timeout=20)
+    headers = {
+        **HEADERS,
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
+    }
+    resp = requests.get(url, headers=headers, timeout=20)
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
     jobs = []
@@ -188,6 +223,11 @@ def main():
 
         for title, link in postings:
             if not title or not matches_keywords(title, keywords):
+                continue
+
+            # Для html-источников дополнительно отсекаем навигационные ссылки
+            # (пункты меню "Events", "Travel" и т.п.), оставляя только реальные вакансии.
+            if ctype == "html" and not looks_like_job_link(title, link):
                 continue
 
             job_id = make_id(name, title, link)
