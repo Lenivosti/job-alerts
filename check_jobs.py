@@ -65,13 +65,17 @@ def looks_like_job_link(text, url):
     """Для html-источников: True, только если ссылка похожа на конкретную вакансию,
     а её текст не выглядит как навигационный пункт меню."""
     text_norm = text.strip().lower()
+    url_lower = url.lower()
+
+    # Отсекаем служебные технические ссылки (защита email от Cloudflare и т.п.)
+    if "cdn-cgi" in url_lower or "email-protection" in url_lower or url_lower.startswith("mailto:"):
+        return False
     # Отсекаем короткие навигационные подписи ("Events", "Travel" и т.п.)
     if text_norm in NAV_TEXT_BLOCKLIST:
         return False
     # Отсекаем маркетинговые страницы-сравнения ("Onde vs. Atom Mobility")
     if " vs. " in text_norm or " vs " in text_norm or text_norm.startswith("vs.") or text_norm.startswith("vs "):
         return False
-    url_lower = url.lower()
     has_job_hint = any(h in url_lower for h in JOB_URL_HINTS)
     if not has_job_hint:
         return False
