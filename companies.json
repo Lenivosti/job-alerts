@@ -1446,7 +1446,22 @@
       "internal communications",
       "global mobility",
       "global talent mobility specialist",
-      "business travel consultant"
+      "business travel consultant",
+      "business travel",
+      "travel consultant",
+      "reservations agent",
+      "reservations specialist",
+      "GDS",
+      "Amadeus",
+      "Sabre",
+      "Galileo",
+      "travel operations",
+      "flight operations",
+      "corporate travel",
+      "ticketing agent",
+      "travel advisor",
+      "implementation specialist",
+      "onboarding specialist"
     ]
   },
   {
@@ -1671,7 +1686,22 @@
       "internal communications",
       "global mobility",
       "global talent mobility specialist",
-      "business travel consultant"
+      "business travel consultant",
+      "business travel",
+      "travel consultant",
+      "reservations agent",
+      "reservations specialist",
+      "GDS",
+      "Amadeus",
+      "Sabre",
+      "Galileo",
+      "travel operations",
+      "flight operations",
+      "corporate travel",
+      "ticketing agent",
+      "travel advisor",
+      "implementation specialist",
+      "onboarding specialist"
     ]
   },
   {
@@ -1695,7 +1725,22 @@
       "internal communications",
       "global mobility",
       "global talent mobility specialist",
-      "business travel consultant"
+      "business travel consultant",
+      "business travel",
+      "travel consultant",
+      "reservations agent",
+      "reservations specialist",
+      "GDS",
+      "Amadeus",
+      "Sabre",
+      "Galileo",
+      "travel operations",
+      "flight operations",
+      "corporate travel",
+      "ticketing agent",
+      "travel advisor",
+      "implementation specialist",
+      "onboarding specialist"
     ],
     "slug": "kiwi-com"
   },
@@ -1721,7 +1766,22 @@
       "internal communications",
       "global mobility",
       "global talent mobility specialist",
-      "business travel consultant"
+      "business travel consultant",
+      "business travel",
+      "travel consultant",
+      "reservations agent",
+      "reservations specialist",
+      "GDS",
+      "Amadeus",
+      "Sabre",
+      "Galileo",
+      "travel operations",
+      "flight operations",
+      "corporate travel",
+      "ticketing agent",
+      "travel advisor",
+      "implementation specialist",
+      "onboarding specialist"
     ]
   },
   {
@@ -1746,7 +1806,22 @@
       "internal communications",
       "global mobility",
       "global talent mobility specialist",
-      "business travel consultant"
+      "business travel consultant",
+      "business travel",
+      "travel consultant",
+      "reservations agent",
+      "reservations specialist",
+      "GDS",
+      "Amadeus",
+      "Sabre",
+      "Galileo",
+      "travel operations",
+      "flight operations",
+      "corporate travel",
+      "ticketing agent",
+      "travel advisor",
+      "implementation specialist",
+      "onboarding specialist"
     ]
   },
   {
@@ -1771,7 +1846,22 @@
       "internal communications",
       "global mobility",
       "global talent mobility specialist",
-      "business travel consultant"
+      "business travel consultant",
+      "business travel",
+      "travel consultant",
+      "reservations agent",
+      "reservations specialist",
+      "GDS",
+      "Amadeus",
+      "Sabre",
+      "Galileo",
+      "travel operations",
+      "flight operations",
+      "corporate travel",
+      "ticketing agent",
+      "travel advisor",
+      "implementation specialist",
+      "onboarding specialist"
     ]
   },
   {
@@ -1872,6 +1962,118 @@
       "global mobility",
       "global talent mobility specialist",
       "business travel consultant"
+    ]
+  },
+  {
+    "name": "Navan",
+    "type": "html",
+    "url": "https://navan.com/careers",
+    "keywords": [
+      "business travel",
+      "travel consultant",
+      "business travel consultant",
+      "GDS",
+      "Amadeus",
+      "Sabre",
+      "Galileo",
+      "travel operations",
+      "corporate travel",
+      "ticketing agent",
+      "travel advisor",
+      "onboarding specialist"
+    ]
+  },
+  {
+    "name": "Spotnana",
+    "type": "html",
+    "url": "https://www.spotnana.com/careers/careers-listing/",
+    "keywords": [
+      "business travel",
+      "travel consultant",
+      "GDS",
+      "Amadeus",
+      "Sabre",
+      "travel operations",
+      "corporate travel",
+      "content and distribution",
+      "onboarding specialist"
+    ]
+  },
+  {
+    "name": "Mews",
+    "type": "html",
+    "url": "https://www.mews.com/en/careers/jobs",
+    "keywords": [
+      "onboarding specialist",
+      "implementation specialist",
+      "customer support",
+      "hospitality",
+      "PMS"
+    ]
+  },
+  {
+    "name": "BCD Travel",
+    "type": "html",
+    "url": "https://jobs.bcdtravel.com/",
+    "keywords": [
+      "business travel",
+      "travel consultant",
+      "GDS",
+      "Amadeus",
+      "Sabre",
+      "travel agent",
+      "corporate travel",
+      "meetings and events"
+    ]
+  },
+  {
+    "name": "CWT",
+    "type": "html",
+    "url": "https://www.mycwt.com/careers/",
+    "keywords": [
+      "business travel",
+      "travel consultant",
+      "GDS",
+      "Amadeus",
+      "Sabre",
+      "corporate travel"
+    ]
+  },
+  {
+    "name": "FCM Travel",
+    "type": "html",
+    "url": "https://careers.fctgcareers.com/",
+    "keywords": [
+      "corporate travel consultant",
+      "GDS",
+      "Sabre",
+      "Amadeus",
+      "travel program administrator"
+    ]
+  },
+  {
+    "name": "Reed & Mackay",
+    "type": "html",
+    "url": "https://reedmackay.com/careers/",
+    "keywords": [
+      "business travel",
+      "travel consultant",
+      "corporate travel",
+      "event management",
+      "GDS"
+    ]
+  },
+  {
+    "name": "Localyze",
+    "type": "html",
+    "url": "https://job-boards.eu.greenhouse.io/localyze",
+    "keywords": [
+      "visa",
+      "relocation",
+      "immigration",
+      "operations support",
+      "case manager",
+      "global mobility"
     ]
   }
 ]
