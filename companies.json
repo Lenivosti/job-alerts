@@ -1962,7 +1962,7 @@
   },
   {
     "name": "Localyze",
-    "type": "greenhouse",
+    "type": "html",
     "keywords": [
       "visa",
       "relocation",
@@ -1971,12 +1971,11 @@
       "case manager",
       "global mobility"
     ],
-    "slug": "localyze"
+    "url": "https://www.localyze.com/careers"
   },
   {
     "name": "Plata",
-    "type": "html",
-    "url": "https://plata.careers/vacancy",
+    "type": "greenhouse",
     "keywords": [
       "travel",
       "event",
@@ -1996,6 +1995,7 @@
       "global mobility",
       "global talent mobility specialist",
       "business travel consultant"
-    ]
+    ],
+    "slug": "platacard"
   }
 ]
