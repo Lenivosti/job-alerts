@@ -1,30 +1,5 @@
 [
   {
-    "name": "Synthflow",
-    "type": "ashby",
-    "slug": "synthflow",
-    "keywords": [
-      "travel",
-      "event",
-      "offsite",
-      "mobility",
-      "visa",
-      "relocation",
-      "group travel",
-      "distributed team",
-      "remote operations",
-      "people operations",
-      "people ops",
-      "employee experience",
-      "workplace experience",
-      "team events",
-      "internal communications",
-      "global mobility",
-      "global talent mobility specialist",
-      "business travel consultant"
-    ]
-  },
-  {
     "name": "WeTravel",
     "type": "ashby",
     "slug": "wetravel",
@@ -1825,71 +1800,6 @@
     ]
   },
   {
-    "name": "Busbud",
-    "type": "html",
-    "url": "https://www.busbud.com/careers",
-    "keywords": [
-      "travel",
-      "event",
-      "offsite",
-      "mobility",
-      "visa",
-      "relocation",
-      "group travel",
-      "distributed team",
-      "remote operations",
-      "people operations",
-      "people ops",
-      "employee experience",
-      "workplace experience",
-      "team events",
-      "internal communications",
-      "global mobility",
-      "global talent mobility specialist",
-      "business travel consultant",
-      "business travel",
-      "travel consultant",
-      "reservations agent",
-      "reservations specialist",
-      "GDS",
-      "Amadeus",
-      "Sabre",
-      "Galileo",
-      "travel operations",
-      "flight operations",
-      "corporate travel",
-      "ticketing agent",
-      "travel advisor",
-      "implementation specialist",
-      "onboarding specialist"
-    ]
-  },
-  {
-    "name": "Personio",
-    "type": "html",
-    "url": "https://www.personio.com/karriere/",
-    "keywords": [
-      "travel",
-      "event",
-      "offsite",
-      "mobility",
-      "visa",
-      "relocation",
-      "group travel",
-      "distributed team",
-      "remote operations",
-      "people operations",
-      "people ops",
-      "employee experience",
-      "workplace experience",
-      "team events",
-      "internal communications",
-      "global mobility",
-      "global talent mobility specialist",
-      "business travel consultant"
-    ]
-  },
-  {
     "name": "Deel",
     "type": "ashby",
     "slug": "deel",
@@ -2027,19 +1937,6 @@
     ]
   },
   {
-    "name": "CWT",
-    "type": "html",
-    "url": "https://www.mycwt.com/careers/",
-    "keywords": [
-      "business travel",
-      "travel consultant",
-      "GDS",
-      "Amadeus",
-      "Sabre",
-      "corporate travel"
-    ]
-  },
-  {
     "name": "FCM Travel",
     "type": "html",
     "url": "https://careers.fctgcareers.com/",
@@ -2065,8 +1962,7 @@
   },
   {
     "name": "Localyze",
-    "type": "html",
-    "url": "https://job-boards.eu.greenhouse.io/localyze",
+    "type": "greenhouse",
     "keywords": [
       "visa",
       "relocation",
@@ -2074,7 +1970,8 @@
       "operations support",
       "case manager",
       "global mobility"
-    ]
+    ],
+    "slug": "localyze"
   },
   {
     "name": "Plata",
