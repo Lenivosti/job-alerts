@@ -30,7 +30,6 @@ def save_json(path, data):
 
 def send_telegram(text):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    # Telegram limits messages to 4096 characters; split if needed
     chunks = [text[i:i + 3500] for i in range(0, len(text), 3500)] or [text]
     for chunk in chunks:
         resp = requests.post(url, data={
@@ -48,46 +47,52 @@ def matches_keywords(text, keywords):
     return any(kw.lower() in text_lower for kw in keywords)
 
 
-# Признаки того, что ссылка ведёт на КОНКРЕТНУЮ вакансию, а не на раздел сайта.
-# Хотя бы один из этих фрагментов должен быть в URL html-ссылки.
 JOB_URL_HINTS = ["/job", "/jobs/", "/vacanc", "/position", "/opening", "/careers/", "/career/", "/apply", "/p/", "-vacancy", "gh_jid", "lever.co", "ashbyhq", "workable", "teamtailor", "breezy", "/o/"]
 
-# Тексты-ссылки, которые почти всегда являются пунктами меню/навигации, а не вакансиями.
 NAV_TEXT_BLOCKLIST = {
     "events", "event", "travel", "mobility", "mobility & relocation",
     "careers", "career", "about", "about us", "blog", "news", "company",
     "team", "our team", "culture", "life", "benefits", "perks", "press",
     "contact", "home", "jobs", "open roles", "all jobs", "vacancies",
+    "visa", "relocation",
 }
 
 
 def looks_like_job_link(text, url):
-    """Для html-источников: True, только если ссылка похожа на конкретную вакансию,
-    а её текст не выглядит как навигационный пункт меню."""
+    """Для html-источников: True, если ссылка похожа на конкретную вакансию.
+
+    Сначала жёстко отсекаем явный мусор (тех. ссылки, короткие пункты
+    меню, сравнения "X vs Y"). Дальше — если в URL есть явный признак
+    вакансии, пропускаем. Если признака в URL нет, всё равно пропускаем,
+    если название состоит из 2-8 слов и не длиннее 80 символов — так
+    двухсловные должности вроде "Travel Specialist" не теряются, а
+    однословные пункты меню всё ещё отсекаются через NAV_TEXT_BLOCKLIST.
+    """
     text_norm = text.strip().lower()
     url_lower = url.lower()
 
-    # Отсекаем служебные технические ссылки (защита email от Cloudflare и т.п.)
     if "cdn-cgi" in url_lower or "email-protection" in url_lower or url_lower.startswith("mailto:"):
         return False
-    # Отсекаем короткие навигационные подписи ("Events", "Travel" и т.п.)
     if text_norm in NAV_TEXT_BLOCKLIST:
         return False
-    # Отсекаем маркетинговые страницы-сравнения ("Onde vs. Atom Mobility")
     if " vs. " in text_norm or " vs " in text_norm or text_norm.startswith("vs.") or text_norm.startswith("vs "):
         return False
+
     has_job_hint = any(h in url_lower for h in JOB_URL_HINTS)
-    if not has_job_hint:
-        return False
-    return True
+    if has_job_hint:
+        return True
+
+    word_count = len(text_norm.split())
+    if 2 <= word_count <= 8 and len(text_norm) <= 80:
+        return True
+
+    return False
 
 
 def make_id(*parts):
     raw = "|".join(parts)
     return hashlib.md5(raw.encode("utf-8")).hexdigest()
 
-
-# ---------- Источники: каждый возвращает список (title, url) ----------
 
 def fetch_ashby(slug):
     url = f"https://api.ashbyhq.com/posting-api/job-board/{slug}"
@@ -229,8 +234,6 @@ def main():
             if not title or not matches_keywords(title, keywords):
                 continue
 
-            # Для html-источников дополнительно отсекаем навигационные ссылки
-            # (пункты меню "Events", "Travel" и т.п.), оставляя только реальные вакансии.
             if ctype == "html" and not looks_like_job_link(title, link):
                 continue
 
@@ -241,7 +244,7 @@ def main():
             seen[job_id] = True
             new_findings.append((name, title, link))
 
-        time.sleep(1)  # вежливая пауза между запросами к разным сайтам
+        time.sleep(1)
 
     if new_findings:
         message_lines = ["🔔 <b>Новые вакансии:</b>\n"]
@@ -256,8 +259,6 @@ def main():
         print("Errors during run:")
         for err in errors:
             print(f"  - {err}")
-        # Раскомментируй следующую строку, если хочешь получать уведомления и об ошибках:
-        # send_telegram("⚠️ Ошибки при проверке:\n" + "\n".join(errors))
 
     save_json(STATE_FILE, seen)
 
