@@ -2779,7 +2779,11 @@
       "movilidad internacional",
       "reubicacion",
       "asistente de viajes",
-      "coordinador de eventos"
+      "coordinador de eventos",
+      "traveler",
+      "traveller",
+      "immigration",
+      "coordinator"
     ]
   },
   {
@@ -4092,6 +4096,42 @@
       "reubicacion",
       "asistente de viajes",
       "coordinador de eventos"
+    ]
+  },
+  {
+    "name": "CIBT",
+    "type": "html",
+    "url": "https://corporate.cibt.com/careers/",
+    "keywords": [
+      "travel",
+      "event",
+      "offsite",
+      "mobility",
+      "visa",
+      "relocation",
+      "group travel",
+      "distributed team",
+      "remote operations",
+      "people operations",
+      "people ops",
+      "employee experience",
+      "workplace experience",
+      "team events",
+      "internal communications",
+      "global mobility",
+      "global talent mobility specialist",
+      "business travel consultant",
+      "viajes corporativos",
+      "eventos internos",
+      "eventos corporativos",
+      "movilidad internacional",
+      "reubicacion",
+      "asistente de viajes",
+      "coordinador de eventos",
+      "traveler",
+      "traveller",
+      "immigration",
+      "coordinator"
     ]
   }
 ]
