@@ -182,7 +182,7 @@ def fetch_workday(company):
     host, tenant, site = company["host"], company["tenant"], company["site"]
     api = f"https://{host}/wday/cxs/{tenant}/{site}/jobs"
     headers = {**HEADERS, "Content-Type": "application/json", "Accept": "application/json"}
-    jobs, offset, limit = [], 0, 20
+    jobs, offset, limit, total = [], 0, 20, None
     while offset < 1500:
         resp = requests.post(api, json={"appliedFacets": {}, "limit": limit, "offset": offset, "searchText": ""},
                              headers=headers, timeout=20)
@@ -193,8 +193,11 @@ def fetch_workday(company):
             title = p.get("title", "")
             path = p.get("externalPath", "")
             jobs.append((title, f"https://{host}/en-US/{site}{path}"))
+        if total is None:
+            # Workday сообщает общее число только на первой странице, дальше присылает 0
+            total = data.get("total", 0)
         offset += limit
-        if not postings or offset >= data.get("total", 0):
+        if not postings or offset >= total:
             break
         time.sleep(0.3)
     return jobs
