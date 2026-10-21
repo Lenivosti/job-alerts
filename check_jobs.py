@@ -176,6 +176,30 @@ def fetch_workable(slug):
     return jobs
 
 
+def fetch_workday(company):
+    """Workday: сайт сам берёт вакансии из JSON-адреса /wday/cxs/{tenant}/{site}/jobs.
+    Отдаёт по 20 штук за запрос, поэтому листаем страницы (до 1500 вакансий)."""
+    host, tenant, site = company["host"], company["tenant"], company["site"]
+    api = f"https://{host}/wday/cxs/{tenant}/{site}/jobs"
+    headers = {**HEADERS, "Content-Type": "application/json", "Accept": "application/json"}
+    jobs, offset, limit = [], 0, 20
+    while offset < 1500:
+        resp = requests.post(api, json={"appliedFacets": {}, "limit": limit, "offset": offset, "searchText": ""},
+                             headers=headers, timeout=20)
+        resp.raise_for_status()
+        data = resp.json()
+        postings = data.get("jobPostings", [])
+        for p in postings:
+            title = p.get("title", "")
+            path = p.get("externalPath", "")
+            jobs.append((title, f"https://{host}/en-US/{site}{path}"))
+        offset += limit
+        if not postings or offset >= data.get("total", 0):
+            break
+        time.sleep(0.3)
+    return jobs
+
+
 def fetch_html(url):
     headers = {
         **HEADERS,
@@ -202,6 +226,7 @@ FETCHERS = {
     "teamtailor": lambda c: fetch_teamtailor(c["slug"]),
     "breezy": lambda c: fetch_breezy(c["slug"]),
     "workable": lambda c: fetch_workable(c["slug"]),
+    "workday": lambda c: fetch_workday(c),
     "html": lambda c: fetch_html(c["url"]),
 }
 

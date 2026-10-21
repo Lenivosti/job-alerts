@@ -4099,9 +4099,11 @@
     ]
   },
   {
-    "name": "CIBT",
-    "type": "html",
-    "url": "https://corporate.cibt.com/careers/",
+    "name": "Autodesk",
+    "type": "workday",
+    "host": "autodesk.wd1.myworkdayjobs.com",
+    "tenant": "autodesk",
+    "site": "Ext",
     "keywords": [
       "travel",
       "event",
@@ -4127,11 +4129,7 @@
       "movilidad internacional",
       "reubicacion",
       "asistente de viajes",
-      "coordinador de eventos",
-      "traveler",
-      "traveller",
-      "immigration",
-      "coordinator"
+      "coordinador de eventos"
     ]
   }
 ]
