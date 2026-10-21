@@ -4100,10 +4100,8 @@
   },
   {
     "name": "Autodesk",
-    "type": "workday",
-    "host": "autodesk.wd1.myworkdayjobs.com",
-    "tenant": "autodesk",
-    "site": "Ext",
+    "type": "eightfold",
+    "host": "jobs.autodesk.com",
     "keywords": [
       "travel",
       "event",
@@ -4130,6 +4128,7 @@
       "reubicacion",
       "asistente de viajes",
       "coordinador de eventos"
-    ]
+    ],
+    "domain": "autodesk.com"
   }
 ]

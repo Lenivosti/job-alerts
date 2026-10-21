@@ -204,6 +204,57 @@ def fetch_workday(company):
     return jobs
 
 
+def _eightfold_positions(data):
+    """Достаёт список вакансий из ответа Eightfold (старый и новый формат API)."""
+    if isinstance(data, dict):
+        if isinstance(data.get("positions"), list):
+            return data["positions"]
+        inner = data.get("data")
+        if isinstance(inner, dict) and isinstance(inner.get("positions"), list):
+            return inner["positions"]
+    return []
+
+
+def fetch_eightfold(company):
+    """Eightfold (например, jobs.autodesk.com): ищем по каждому ключевому слову,
+    как поиск на самом сайте. Пробуем классический API, если он не отвечает — новый."""
+    host, domain = company["host"], company["domain"]
+    headers = {**HEADERS, "Accept": "application/json"}
+    endpoints = [
+        (f"https://{host}/api/apply/v2/jobs", {"domain": domain, "start": 0, "num": 50}),
+        (f"https://{host}/api/pcsx/search", {"domain": domain, "start": 0}),
+    ]
+    jobs, seen_ids, working = [], set(), None
+    for kw in company.get("keywords", []):
+        candidates = [working] if working else endpoints
+        for url, base_params in candidates:
+            try:
+                resp = requests.get(url, params={**base_params, "query": kw}, headers=headers, timeout=20)
+                resp.raise_for_status()
+                positions = _eightfold_positions(resp.json())
+            except Exception:
+                if working:
+                    raise
+                continue
+            working = (url, base_params)
+            for p in positions:
+                pid = str(p.get("id") or p.get("ats_job_id") or p.get("name"))
+                if pid in seen_ids:
+                    continue
+                seen_ids.add(pid)
+                title = p.get("name") or p.get("title") or ""
+                link = p.get("canonicalPositionUrl") or p.get("positionUrl") or f"/careers/job/{p.get('id', '')}"
+                if link.startswith("/"):
+                    link = f"https://{host}{link}"
+                jobs.append((title, link))
+            break
+        if not working:
+            raise RuntimeError(f"Eightfold API не ответил ни по одному адресу на {host}")
+        time.sleep(0.3)
+    print(f"[INFO] {company['name']} (eightfold): найдено по ключевым словам {len(jobs)} вакансий")
+    return jobs
+
+
 def fetch_html(url):
     headers = {
         **HEADERS,
@@ -231,6 +282,7 @@ FETCHERS = {
     "breezy": lambda c: fetch_breezy(c["slug"]),
     "workable": lambda c: fetch_workable(c["slug"]),
     "workday": lambda c: fetch_workday(c),
+    "eightfold": lambda c: fetch_eightfold(c),
     "html": lambda c: fetch_html(c["url"]),
 }
 
