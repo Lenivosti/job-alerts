@@ -178,12 +178,12 @@ def fetch_workable(slug):
 
 def fetch_workday(company):
     """Workday: сайт сам берёт вакансии из JSON-адреса /wday/cxs/{tenant}/{site}/jobs.
-    Отдаёт по 20 штук за запрос, поэтому листаем страницы (до 1500 вакансий)."""
+    Отдаёт по 20 штук за запрос, поэтому листаем страницы (до 4000 вакансий)."""
     host, tenant, site = company["host"], company["tenant"], company["site"]
     api = f"https://{host}/wday/cxs/{tenant}/{site}/jobs"
     headers = {**HEADERS, "Content-Type": "application/json", "Accept": "application/json"}
     jobs, offset, limit, total = [], 0, 20, None
-    while offset < 1500:
+    while offset < 4000:
         resp = requests.post(api, json={"appliedFacets": {}, "limit": limit, "offset": offset, "searchText": ""},
                              headers=headers, timeout=20)
         resp.raise_for_status()
@@ -200,6 +200,7 @@ def fetch_workday(company):
         if not postings or offset >= total:
             break
         time.sleep(0.3)
+    print(f"[INFO] {company['name']} (workday): всего на сайте {total}, прочитано {len(jobs)}")
     return jobs
 
 
