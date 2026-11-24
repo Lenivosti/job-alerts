@@ -6,6 +6,7 @@ import time
 import requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
+import html
 from functools import lru_cache
 
 STATE_FILE = "seen_jobs.json"
@@ -29,18 +30,38 @@ def save_json(path, data):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 
-def send_telegram(text):
+def _send_one(text):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    chunks = [text[i:i + 3500] for i in range(0, len(text), 3500)] or [text]
-    for chunk in chunks:
-        resp = requests.post(url, data={
-            "chat_id": TELEGRAM_CHAT_ID,
-            "text": chunk,
-            "parse_mode": "HTML",
-            "disable_web_page_preview": False
-        }, timeout=20)
-        if not resp.ok:
-            print(f"[TELEGRAM ERROR] {resp.status_code}: {resp.text}")
+    resp = requests.post(url, data={
+        "chat_id": TELEGRAM_CHAT_ID,
+        "text": text,
+        "parse_mode": "HTML",
+        "disable_web_page_preview": True
+    }, timeout=20)
+    if not resp.ok:
+        print(f"[TELEGRAM ERROR] {resp.status_code}: {resp.text}")
+    return resp.ok
+
+
+def send_findings(findings):
+    """Шлёт вакансии пачками, разрезая только между вакансиями, а не посреди тега.
+    Названия экранируются, чтобы символы < > & в них не ломали разметку.
+    Возвращает вакансии, которые реально дошли до Telegram."""
+    header = "🔔 <b>Новые вакансии:</b>\n\n"
+    delivered, batch, batch_items = [], header, []
+    for item in findings:
+        name, title, link = item
+        entry = f"<b>{html.escape(name)}</b>: {html.escape(title)}\n{html.escape(link)}\n\n"
+        if batch_items and len(batch) + len(entry) > 3500:
+            if _send_one(batch):
+                delivered.extend(batch_items)
+            batch, batch_items = header, []
+            time.sleep(1)
+        batch += entry
+        batch_items.append(item)
+    if batch_items and _send_one(batch):
+        delivered.extend(batch_items)
+    return delivered
 
 
 EXCLUDE_FILE = "exclude_keywords.json"
@@ -362,19 +383,20 @@ def main():
             if job_id in seen:
                 continue
 
-            seen[job_id] = True
-            new_findings.append((name, title, link))
+            seen[job_id] = True  # временно, чтобы не дублировать внутри прогона
+            new_findings.append((name, title, link, job_id))
 
         time.sleep(1)
 
     print(f"[INFO] Отсечено словами-исключениями: {excluded_count}")
 
     if new_findings:
-        message_lines = ["🔔 <b>Новые вакансии:</b>\n"]
-        for name, title, link in new_findings:
-            message_lines.append(f"<b>{name}</b>: {title}\n{link}\n")
-        send_telegram("\n".join(message_lines))
-        print(f"Found {len(new_findings)} new postings, notification sent.")
+        delivered = send_findings([f[:3] for f in new_findings])
+        delivered_set = set(delivered)
+        for name, title, link, job_id in new_findings:
+            if (name, title, link) not in delivered_set:
+                seen.pop(job_id, None)  # не дошло — пришлём в следующий раз
+        print(f"Found {len(new_findings)} new postings, delivered to Telegram: {len(delivered)}.")
     else:
         print("No new postings today.")
 
