@@ -6,6 +6,7 @@ import time
 import requests
 from bs4 import BeautifulSoup
 import xml.etree.ElementTree as ET
+from functools import lru_cache
 
 STATE_FILE = "seen_jobs.json"
 COMPANIES_FILE = "companies.json"
@@ -42,9 +43,41 @@ def send_telegram(text):
             print(f"[TELEGRAM ERROR] {resp.status_code}: {resp.text}")
 
 
+EXCLUDE_FILE = "exclude_keywords.json"
+
+
+def _normalize(text):
+    """Нижний регистр, "&" приравниваем к "and"."""
+    return text.lower().replace("&", " and ")
+
+
+@lru_cache(maxsize=None)
+def _phrase_pattern(phrase):
+    """Ищем фразу по целым словам: "vp" не сработает внутри "mvp",
+    "it operations" — внутри "credit operations". Между словами допускаем
+    пробелы, дефисы, слэши и т.п. ("Operations-Manager", "People & Culture")."""
+    words = re.findall(r"[a-z0-9]+", _normalize(phrase))
+    if not words:
+        return None
+    return re.compile(r"(?<![a-z0-9])" + r"[^a-z0-9]+".join(map(re.escape, words)) + r"(?![a-z0-9])")
+
+
+def _contains_any(text, phrases):
+    norm = _normalize(text)
+    for phrase in phrases:
+        pattern = _phrase_pattern(phrase)
+        if pattern and pattern.search(norm):
+            return True
+    return False
+
+
 def matches_keywords(text, keywords):
-    text_lower = text.lower()
-    return any(kw.lower() in text_lower for kw in keywords)
+    return _contains_any(text, keywords)
+
+
+def is_excluded(text, excludes):
+    """Слово-исключение в названии побеждает любое ключевое слово."""
+    return _contains_any(text, excludes)
 
 
 JOB_URL_HINTS = ["/job", "/jobs/", "/vacanc", "/position", "/opening", "/careers/", "/career/", "/apply", "/p/", "-vacancy", "gh_jid", "lever.co", "ashbyhq", "workable", "teamtailor", "breezy", "/o/"]
@@ -290,14 +323,17 @@ FETCHERS = {
 def main():
     companies = load_json(COMPANIES_FILE, [])
     seen = load_json(STATE_FILE, {})
+    global_excludes = load_json(EXCLUDE_FILE, [])
 
     new_findings = []
+    excluded_count = 0
     errors = []
 
     for company in companies:
         name = company["name"]
         ctype = company.get("type", "html")
         keywords = company.get("keywords", [])
+        excludes = global_excludes + company.get("exclude", [])
         fetcher = FETCHERS.get(ctype)
 
         if fetcher is None:
@@ -315,6 +351,10 @@ def main():
             if not title or not matches_keywords(title, keywords):
                 continue
 
+            if is_excluded(title, excludes):
+                excluded_count += 1
+                continue
+
             if ctype == "html" and not looks_like_job_link(title, link):
                 continue
 
@@ -326,6 +366,8 @@ def main():
             new_findings.append((name, title, link))
 
         time.sleep(1)
+
+    print(f"[INFO] Отсечено словами-исключениями: {excluded_count}")
 
     if new_findings:
         message_lines = ["🔔 <b>Новые вакансии:</b>\n"]
