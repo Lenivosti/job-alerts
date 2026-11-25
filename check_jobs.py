@@ -161,10 +161,23 @@ def fetch_ashby(slug):
     return jobs
 
 
-def fetch_greenhouse(slug):
-    url = f"https://boards-api.greenhouse.io/v1/boards/{slug}/jobs"
-    resp = requests.get(url, headers=HEADERS, timeout=20)
+def _get_with_eu_fallback(urls):
+    """Европейские аккаунты Greenhouse и Lever живут на отдельном адресе API:
+    если основной отвечает 404, пробуем европейский."""
+    resp = None
+    for url in urls:
+        resp = requests.get(url, headers=HEADERS, timeout=20)
+        if resp.status_code != 404:
+            break
     resp.raise_for_status()
+    return resp
+
+
+def fetch_greenhouse(slug):
+    resp = _get_with_eu_fallback([
+        f"https://boards-api.greenhouse.io/v1/boards/{slug}/jobs",
+        f"https://boards-api.eu.greenhouse.io/v1/boards/{slug}/jobs",
+    ])
     data = resp.json()
     jobs = []
     for job in data.get("jobs", []):
@@ -175,9 +188,10 @@ def fetch_greenhouse(slug):
 
 
 def fetch_lever(slug):
-    url = f"https://api.lever.co/v0/postings/{slug}?mode=json"
-    resp = requests.get(url, headers=HEADERS, timeout=20)
-    resp.raise_for_status()
+    resp = _get_with_eu_fallback([
+        f"https://api.lever.co/v0/postings/{slug}?mode=json",
+        f"https://api.eu.lever.co/v0/postings/{slug}?mode=json",
+    ])
     data = resp.json()
     jobs = []
     for job in data:
